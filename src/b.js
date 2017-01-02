@@ -1,5 +1,5 @@
 module.exports = {
     sayHello: function(){
-        console('common b!');
+        console.log('common b!');
     }
 };
