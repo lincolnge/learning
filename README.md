@@ -10,3 +10,11 @@ $ git subtree pull --prefix=coding --squash git@github.com:lincolnge/coding.git 
 $ git subtree add --prefix=spring-sample --squash git@github.com:lincolnge/spring-sample.git master
 $ git subtree pull --prefix=spring-sample --squash git@github.com:lincolnge/spring-sample.git master
 ```
+
+```
+$ git subtree add --prefix=node-test --squash git@github.com:lincolnge/node-test.git master
+```
+
+```
+$ git subtree add --prefix=webpack-learning --squash git@github.com:lincolnge/webpack-learning.git master
+```
