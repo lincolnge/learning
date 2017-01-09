@@ -32,3 +32,5 @@ EventUtil.addHandler(window, 'offline', function(event){
   debugger;
   console.log(event);
 });
+
+var move = require('./move');
