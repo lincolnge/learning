@@ -18,3 +18,7 @@ $ git subtree add --prefix=node-test --squash git@github.com:lincolnge/node-test
 ```
 $ git subtree add --prefix=webpack-learning --squash git@github.com:lincolnge/webpack-learning.git master
 ```
+
+```
+$ git subtree add --prefix=docker-optimize --squash git@github.com:lincolnge/docker-optimize.git master
+```
