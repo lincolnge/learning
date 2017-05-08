@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import './init';
-import DatetimePicker from '../../dist';
+// import DatetimePicker from '../../dist';
 
 export default class App extends React.Component {
 
@@ -42,13 +42,13 @@ export default class App extends React.Component {
           })
         }
         </ul>
-        <DatetimePicker
+        {/* <DatetimePicker
           style={{width: '300px'}}
           value={this.state.datetime}
           format='YYYY-MM-DD HH:mm:ss'
           limit={limit}
           onChange={datetime => this.setState({datetime})}
-        />
+        /> */}
       </div>
     );
   }
