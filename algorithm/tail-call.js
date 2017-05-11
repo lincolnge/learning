@@ -22,9 +22,19 @@ function factorial(n, total) {
 //   return Fibonacci(n - 1) + Fibonacci(n - 2);
 // }
 //
-function Fibonacci(n, x0 = 1, x1 = 1) {
-  if (n <= 1) return x1;
-  return Fibonacci(n - 1, x1, x0 + x1);
+// function Fibonacci(n, x0 = 1, x1 = 1) {
+//   if (n <= 1) return x1;
+//   return Fibonacci(n - 1, x1, x0 + x1);
+// }
+
+function Fibonacci(n) {
+  var list = new Array();
+  list[0] = 1;
+  list[1] = 1;
+  for (var i = 1; i < n; i++) {
+    list[i + 1] = list[i] + list[i - 1];
+  }
+  return list[n];
 }
 
 console.log(Fibonacci(1));
