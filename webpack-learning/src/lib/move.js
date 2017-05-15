@@ -1,5 +1,5 @@
 var moveCls = document.querySelector('.moveCls');
-console.log(moveCls, 'eeee');
+console.log(moveCls, 'eeee ccc');
 moveCls.style.backgroundColor = 'yellow';
 
 var body = document.querySelector('body');
