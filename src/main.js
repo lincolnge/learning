@@ -1,4 +1,4 @@
-var a = require('./a');
+var a = require('./lib/a');
 
 a.sayHello();
 
@@ -33,4 +33,4 @@ EventUtil.addHandler(window, 'offline', function(event){
   console.log(event);
 });
 
-var move = require('./move');
+var move = require('./lib/move');
