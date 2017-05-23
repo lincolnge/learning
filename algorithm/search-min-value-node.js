@@ -20,6 +20,8 @@ function ListNode(val) {
        /
       7
 
+ * 搜索权重最小，叶子最短的一支。
+ * 在这颗树上就是 2 - 3 - 6 这支
  */
 
 var l0 = new ListNode(2);
@@ -36,35 +38,45 @@ l0.right.right = new ListNode(1);
 l0.right.right.left = new ListNode(8);
 l0.right.right.right = new ListNode(8);
 
+var sumStack = [];
+var sumStackList = {};
+var treeNode = {};
+
 var searchMinValueNode = function(root) {
-	var sum = 0;
-	var dep = 0;
-	var treeNode = {};
-	console.log('root', root && root.val);
-	const result = minDeep(root, sum, dep, treeNode);
-	console.log('treeNode[result]', treeNode[result]);
-	return result;
+  var dep = 0;
+  var sum = 0;
+
+  // console.log('root', root && root.val);
+  var result = minDeep(root, sum, dep);
+  console.log('dep', treeNode[result]);
+  // console.log('end sumStack', sumStack);
+  console.log('tree-leave', sumStackList[result]);
+  console.log('result', result);
+  return result;
 };
 
-var minDeep = function(root, sum, dep, treeNode) {
-	if (root === null) {
-		return Infinity;
-	}
-	sum += root.val;
-	dep++;
-	if (root.left === null && root.right === null) {
-		if (!treeNode[sum]) {
-			treeNode[sum] = Infinity;
-		}
-		treeNode[sum] = Math.min(dep, treeNode[sum]);
-		console.log('sum', sum, 'root.val', root.val, 'dep', dep, 'treeNode', treeNode);
-		return sum;
-	}
-	const result = Math.min(minDeep(root.left, sum, dep, treeNode), minDeep(root.right, sum, dep, treeNode));
-	return result;
+var minDeep = function(root, sum, dep) {
+  if (root === null) {
+    return Infinity;
+  }
+  sum += root.val;
+  sumStack.splice(dep, sumStack.length - 1, root.val);
+  dep++;
+  if (root.left === null && root.right === null) {
+    if (!treeNode[sum]) {
+      treeNode[sum] = Infinity;
+    }
+    treeNode[sum] = Math.min(dep, treeNode[sum]);
+    // var keyLength = sumStackList.length;
+    sumStackList[sum] = sumStack.slice(0);
+    // console.log('sumStack', sumStack, 'sumStackList', sumStackList, 'keyLength', keyLength);
+    // console.log('sum', sum, 'root.val', root.val, 'dep', dep, 'treeNode', treeNode);
+    return sum;
+  }
+  return Math.min(minDeep(root.left, sum, dep), minDeep(root.right, sum, dep));
 }
 
 console.log('begin!');
-// searchMinValueNode(l0)
-console.log(searchMinValueNode(l0));
-
+searchMinValueNode(l0);
+console.log('end!');
+// console.log('result', searchMinValueNode(l0));
