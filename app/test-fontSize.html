@@ -1,0 +1,81 @@
+<!-- 研究 iOS 放大、视图放大放大的是什么？ -->
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<style>
+  html {
+    font-size: 50px;
+  }
+  body {
+    width: auto;
+    height: auto;
+    font-size: 1rem;
+  }
+  .c1 {
+    font-size: 50px;
+  }
+  .c2 {
+    font-size: 1rem;
+  }
+</style>
+<style id="rem-style">
+</style>
+
+<script src="https://static.meituan.net/bs/eruda/v1.2.4/eruda.min.js"></script>
+<script>eruda.init();</script>
+
+<script>
+/**
+* 使用 rem 布局不要使用 text-size-adjust 改变字体效果，
+* 在 <meta name="viewport"> 之后使用该代码
+* @param {Number} designCSSWidth       设计基准CSS宽度，设备宽度 / dpr
+* @param {Number} baseFontSize         基准字体大小，当前 innerWidth 和 designCSSWidth 宽度相同时，html 的 font-size px 值
+* @param {Number} maxScale             最大的缩小放大倍数
+*/
+(function rem(designCSSWidth, baseFontSize, maxScale){
+    designCSSWidth = designCSSWidth || 760;
+    baseFontSize = baseFontSize || 100;
+    maxScale = maxScale || 1.5;
+
+    console.log('window.devicePixelRatio', window.devicePixelRatio)
+
+    var w = window;
+    var d = document;
+    var on = 'addEventListener';
+    var html = d.documentElement;
+    var maxSize = maxScale * baseFontSize;
+    var remStyle = d.getElementById('rem-style');
+    function setRem() {
+      var isVertical = w.innerWidth < w.innerHeight;
+      var width = w.innerWidth;
+      console.log('width', width);
+      if (!isVertical) {
+        width = 375;
+        remStyle.innerText = 'body { max-width: ' + width + 'px}';
+      } else {
+        remStyle.innerText = '';
+      }
+      var size = baseFontSize * width / designCSSWidth;
+      html.style.fontSize = Math.min(size, maxSize) + 'px';
+      console.log('fontSize', html.style.fontSize);
+    }
+
+    w[on]('resize', setRem, false);
+    setRem();
+
+})(375, 50);
+</script>
+
+</head>
+<body>
+  <div class="c1">中国</div>
+  <div class="c2">中国</div>
+  <div class="c3">中国</div>
+  <div class="c4">中国</div>
+  <div class="c5">中国</div>
+
+
+
+</body>
+</html>
