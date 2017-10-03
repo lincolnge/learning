@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>Ex</title>
+  </head>
+
+  <div class="container" id="container">
+    <div class="div1" id="div1">
+      this is div1.
+    </div>
+    <div class="div2" id="div2">
+      this is div2.
+    </div>
+  </div>
+
+  <script>
+    var d1 = document.getElementById('div2');
+    var container = document.getElementById('container');
+    var newNode = document.createElement("span");
+    var ct = document.createTextNode('dddd');
+    newNode.appendChild(ct);
+    container.insertBefore(newNode, d1.nextSibling);
+    container.insertBefore(newNode, null);
+  </script>
+</html>
