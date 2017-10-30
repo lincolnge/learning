@@ -1,0 +1,22 @@
+<h1>Sender</h1>
+
+<p>Type into the text box below and watch the text
+   appear automatically in the receiver.</p>
+
+<form name="sender">
+<input type="text" name="message" size="30" value="">
+<input type="reset" value="Clean">
+</form>
+
+<script type="text/javascript"><!--
+function setCookie(value) {
+    document.cookie = "cookie-msg-test=" + value + "; path=/";
+    return true;
+}
+function updateMessage() {
+    var t = document.forms['sender'].elements['message'];
+    setCookie(t.value);
+    setTimeout(updateMessage, 100);
+}
+updateMessage();
+//--></script>
