@@ -13,12 +13,21 @@
   </div>
 
   <script>
-    var d1 = document.getElementById('div2');
+    var d1 = document.getElementById('div1');
+    var d2 = document.getElementById('div2');
     var container = document.getElementById('container');
     var newNode = document.createElement("span");
     var ct = document.createTextNode('dddd');
     newNode.appendChild(ct);
-    container.insertBefore(newNode, d1.nextSibling);
-    container.insertBefore(newNode, null);
+    // container.insertBefore(newNode, d1.nextSibling);
+    // container.insertBefore(newNode, null);
+
+    insertAfter(newNode, d2);
+
+    function insertAfter(newEl, targetEl) {
+      // 其实不需要判断是否是最后一个节点，然后 appendChild。
+      var parentEl = targetEl.parentNode;
+      parentEl.insertBefore(newEl, targetEl.nextSibling);
+    }
   </script>
 </html>
