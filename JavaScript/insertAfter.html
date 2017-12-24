@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>Ex</title>
@@ -13,6 +14,7 @@
   </div>
 
   <script>
+    'use strict';
     var d1 = document.getElementById('div1');
     var d2 = document.getElementById('div2');
     var container = document.getElementById('container');
@@ -22,11 +24,18 @@
     // container.insertBefore(newNode, d1.nextSibling);
     // container.insertBefore(newNode, null);
 
-    insertAfter(newNode, d2);
+    insertAfter(newNode, d1);
 
     function insertAfter(newEl, targetEl) {
-      // 其实不需要判断是否是最后一个节点，然后 appendChild。
       var parentEl = targetEl.parentNode;
+      /*
+      // 其实不需要判断是否是最后一个节点，然后 appendChild。
+      if (targetEl === parent.lastChild) {
+        parentEl.appendChild(newEl);
+      } else {
+        parentEl.insertBefore(newEl, targetEl.nextSibling);
+      }
+      */
       parentEl.insertBefore(newEl, targetEl.nextSibling);
     }
   </script>
