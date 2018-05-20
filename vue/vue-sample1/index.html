@@ -1,0 +1,55 @@
+<div>
+  input: <input class='name' />
+  <br/>
+  output: <span class="name"></span>
+</div>
+
+<script>
+
+// js 数据劫持。
+var data = {
+  name: '',
+};
+
+Object.keys(data).forEach(function (key, v) {
+  var _data = {};
+  _data[key] = data[key];
+  Object.defineProperty(data, key, {
+    enumerable: true,
+    configurable: true,
+    get: function() {
+      return _data[key];
+    },
+    set: function(value) {
+      _data[key] = value;
+      console.log('set v', value);
+      if (key === 'name') {
+        doSomething(value);
+      }
+    }
+  })
+});
+
+var elms = document.querySelectorAll('.name');
+Object.keys(elms).forEach(function (index) {
+  var item = elms[index];
+  item.addEventListener('input', function(e) {
+    var _value = e.target.value;
+    data.name = _value;
+  }, false);
+});
+
+function doSomething(value) {
+  Object.keys(elms).forEach(function (index) {
+    var item = elms[index];
+    if (item.tagName === 'INPUT') {
+      item.value = value;
+    } else if (item.tagName === 'DIV' || item.tagName === 'SPAN') {
+      item.innerHTML = value;
+    }
+  })
+}
+
+data.name = 'lhl';
+
+</script>
