@@ -1,4 +1,7 @@
 var fs = require('fs');
+// 测试 node 中的循环引用的处理。
+var a = require('./lib/a');
+// var b = require('./lib/b');
 
 function someAsyncOperation (callback) {
   var time = Date.now();
