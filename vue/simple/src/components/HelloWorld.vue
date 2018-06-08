@@ -1,5 +1,9 @@
 <template lang="ejs">
   <div class="hello">
+    <div>
+      info: {{info}}
+    </div>
+
     <!-- 这句话证明 vue 自带 include ejs 模板的能力 -->
     <% include ./tpl/test.vue %>
 
@@ -102,10 +106,15 @@
 </template>
 
 <script>
+import _ from 'lodash';
+
+const info = ('lodash', _.isArray([1, 2, 3]));
+
 export default {
   name: 'HelloWorld',
   data() {
     return {
+      info,
       msg: 'Welcome to Your Vue.js App',
     };
   },
