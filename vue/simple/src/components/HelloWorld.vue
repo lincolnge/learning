@@ -1,7 +1,23 @@
 <template lang="ejs">
   <div class="hello">
     <!-- 这句话证明 vue 自带 include ejs 模板的能力 -->
-    <% include ./tpl/test.tpl %>
+    <% include ./tpl/test.vue %>
+
+    <% if (true) { %>
+      <h2><%= 1 %></h2>
+    <% } %>
+
+    <br />
+
+    <% [1, 2, 3].forEach(function(item) { %>
+      <%= item %>
+    <% }); %>
+
+    <br />
+    <% for (var i = 0; i < 3; i++) { %>
+      <%= i %>
+    <% } %>
+
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>

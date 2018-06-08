@@ -2,6 +2,12 @@
 
 > A Vue.js project
 
+## 测试功能
+
+[x] 测试  
+[x] 完成 ejs 的测试，vue 默认可以识别 ejs 模板。
+
+
 ## Build Setup
 
 ``` bash
