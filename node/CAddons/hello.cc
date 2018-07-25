@@ -1,24 +1,25 @@
 // hello.cc
-#include <node.h>
 
-namespace demo {
+#include<node.h>
+#include<v8.h>
+#include<iostream>
 
-using v8::FunctionCallbackInfo;
-using v8::Isolate;
-using v8::Local;
-using v8::Object;
-using v8::String;
-using v8::Value;
+using namespace std;
+using namespace v8;
 
-void Method(const FunctionCallbackInfo<Value>& args) {
-  Isolate* isolate = args.GetIsolate();
-  args.GetReturnValue().Set(String::NewFromUtf8(isolate, "world"));
-}
+namespace helloWorld {
 
-void init(Local<Object> exports) {
-  NODE_SET_METHOD(exports, "hello", Method);
-}
+    void Method(const FunctionCallbackInfo<Value>& args){
+        std::cout << "\n\n Hello！";
+        printf("\n World 1234");
 
-NODE_MODULE(NODE_GYP_MODULE_NAME, init)
+        Isolate* isolate = args.GetIsolate();
+        args.GetReturnValue().Set(String::NewFromUtf8(isolate, "\n131达到3"));
+    }
+    void init(Handle<Object> exports){ 
+        NODE_SET_METHOD(exports, "hello", Method);
+    }
+    NODE_MODULE(NODE_GYP_MODULE_NAME, init);
 
-}  // namespace demo
+}  // namespace helloWorld
+
