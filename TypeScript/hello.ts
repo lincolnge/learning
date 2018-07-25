@@ -25,3 +25,5 @@ function reverse(x: number | string): number | string {
 
 reverse(132)
 reverse('132')
+
+enum Days {Sun, Mon, Tue, Wed, Thu, Fri, Sat};
