@@ -29,3 +29,9 @@ var Days;
     Days[Days["Sat"] = 6] = "Sat";
 })(Days || (Days = {}));
 ;
+var tom = {
+    id: 89757,
+    name: 'Tom',
+    gender: 'male'
+};
+console.log('tom', tom);

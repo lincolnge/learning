@@ -27,3 +27,18 @@ reverse(132)
 reverse('132')
 
 enum Days {Sun, Mon, Tue, Wed, Thu, Fri, Sat};
+
+interface Person {
+    readonly id: number;
+    name: string;
+    age?: number;
+    [propName: string]: any;
+}
+
+let tom: Person = {
+    id: 89757,
+    name: 'Tom',
+    gender: 'male'
+};
+
+console.log('tom', tom);
