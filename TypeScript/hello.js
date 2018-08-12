@@ -16,6 +16,19 @@ function reverse(x) {
         return x.split('').reverse().join('');
     }
 }
+var A = /** @class */ (function () {
+    function A() {
+    }
+    A.reverse = function (x) {
+        if (typeof x === 'number') {
+            return Number(x.toString().split('').reverse().join(''));
+        }
+        else if (typeof x === 'string') {
+            return x.split('').reverse().join('');
+        }
+    };
+    return A;
+}());
 reverse(132);
 reverse('132');
 var Days;

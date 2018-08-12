@@ -23,6 +23,19 @@ function reverse(x: number | string): number | string {
     }
 }
 
+class A {
+    public static reverse(x: number): number;
+    public static reverse(x: string): string;
+    public static reverse(x: number | string): number | string {
+        if (typeof x === 'number') {
+            return Number(x.toString().split('').reverse().join(''));
+        } else if (typeof x === 'string') {
+            return x.split('').reverse().join('');
+        }
+    }
+
+}
+
 reverse(132)
 reverse('132')
 
