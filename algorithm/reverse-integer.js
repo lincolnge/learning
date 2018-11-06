@@ -5,13 +5,39 @@
  */
 var reverse = function(x) {
     var result = Math.abs(x);
+    var resultValue = '';
+
     symbol = 1;
     var infinityNum = Math.pow(2, 31);
-    console.log('infinityNum', infinityNum);
     if (x < 0) {
         symbol = -1;
     }
-    var resultValue = Number(String(result).split('').reverse().join('')) * symbol;
+    // if (result > infinityNum - 1 || result < -infinityNum) {
+    //     return 0;
+    // }
+
+    // 方法一
+    // var tmpStack = String(result).split('');
+    // while (tmpStack.length > 0) {
+    //     resultValue += String(tmpStack.pop());
+    // }
+    // resultValue = Number(resultValue) * symbol;
+
+    // 方法二
+    // resultValue = Number(String(result).split('').reverse().join('')) * symbol;
+
+    // 方法三
+    var array = String(result).split('');
+    var length = array.length;
+    var left = null;
+    var right = null;
+    for (left = 0, right = length - 1; left < right; left += 1, right -= 1) {
+        var temporary = array[left];
+        array[left] = array[right];
+        array[right] = temporary;
+    }
+    resultValue = Number(array.join('')) * symbol;
+
     if (resultValue > infinityNum - 1 || resultValue < -infinityNum) {
         resultValue = 0;
     }
