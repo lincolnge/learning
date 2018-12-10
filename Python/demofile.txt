@@ -1,0 +1,1 @@
+{"result": "识别结果：direnjie , 准确度：0.78754157", "name": "direnjie", "score": 0.78754157}

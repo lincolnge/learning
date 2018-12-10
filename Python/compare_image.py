@@ -13,7 +13,7 @@ def compare_image(filepath1, filepath2):
 
 if __name__ == '__main__':
     uploaded_file_path = os.path.join('/Users/asce/project/tensorflow/models-image/cyj.jpg')
-    uploaded_file_path2 = os.path.join('/Users/asce/project/tensorflow/models-image/zhugeliang.jpg')
+    uploaded_file_path2 = os.path.join('/Users/asce/project/tensorflow/models-image/cyj.jpg')
     result = compare_image(uploaded_file_path, uploaded_file_path2)
     print(result)
     # print(cv2.cv.CV_COMP_CORREL)
