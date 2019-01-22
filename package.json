@@ -19,7 +19,7 @@
     "test": "./node_modules/.bin/mocha index-test.spec.js",
     "nyc": "nyc --reporter=lcov --reporter=text --reporter=text-summary npm run test",
     "run-coveralls": "nyc report --reporter=text-lcov npm run test | coveralls",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
