@@ -2,6 +2,8 @@ Learning
 ====
 [![Build Status](https://travis-ci.org/lincolnge/learning.svg?branch=master)](https://travis-ci.org/lincolnge/learning)
 
+[![Coverage Status](https://coveralls.io/repos/github/lincolnge/learning/badge.svg?branch=master)](https://coveralls.io/github/lincolnge/learning?branch=master)
+
 ```
 $ git subtree add --prefix=coding --squash git@github.com:lincolnge/coding.git master
 $ git subtree pull --prefix=coding --squash git@github.com:lincolnge/coding.git master
