@@ -10,4 +10,5 @@ script:
   - npm run nyc
 after_success:
   # - './node_modules/.bin/nyc report --reporter=text-lcov | coveralls'
-  - npm run coveralls
+  # - npm run coveralls
+  - ./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls
