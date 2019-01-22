@@ -1,5 +1,6 @@
 Learning
 ====
+[![Build Status](https://travis-ci.org/lincolnge/learning.svg?branch=master)](https://travis-ci.org/lincolnge/learning)
 
 ```
 $ git subtree add --prefix=coding --squash git@github.com:lincolnge/coding.git master
