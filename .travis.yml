@@ -7,7 +7,7 @@ cache:
   - node_modules
 script:
   - npm install
-  - npm run test
+  - npm run nyc
 after_success:
   # - './node_modules/.bin/nyc report --reporter=text-lcov | coveralls'
   - npm run coveralls
