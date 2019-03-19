@@ -1,0 +1,72 @@
+<html>
+<head>
+</head>
+
+<body>
+    <div class="some-id" style="position: relative;">
+        <div class="one">
+            123
+        </div>
+    </div>
+
+    <script>
+        /**
+         * 验证 MutationObserver 的监控节点变化的功能。
+         * https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver
+         */
+        function main() {
+            var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+
+            var container = document.querySelector('body') || document.body;
+            // container = document.querySelector('.some-id');
+
+            console.log('0123')
+
+            // Create an observer instance linked to the callback function
+            var observer = new MutationObserver(function(mutationsList) {
+                var targetNode = document.querySelector('.some-id');
+                var hasNode = targetNode && targetNode.hasChildNodes();
+                console.log('133 hasNode', hasNode)
+                for (var mutation of mutationsList) {
+                    if (mutation.type == 'childList') {
+                        console.log('A child node has been added or removed.');
+                    }
+                    else if (mutation.type == 'attributes') {
+                        console.log('The ' + mutation.attributeName + ' attribute was modified.');
+                    }
+                }
+
+                if (hasNode) {
+                    console.log('hasAttribute');
+                    // observer.disconnect();
+                    return;
+                // } else {
+                //     console.log('hasAttribute not');
+                }
+
+                if (!targetNode) {
+                    // 避免一直触发
+                    // observer.disconnect();
+                    // observer = null;
+                    console.log('???')
+                }
+            });
+            // Start observing the target node for configured mutations
+            // var targetNode = document.querySelector('#some-id');
+
+            // observer.observe(targetNode, config);
+            // observer.observe(document.body, config);
+            observer.observe(container, {
+                attributes: true,
+                subtree: true,
+                childList: true
+            });
+
+            // Later, you can stop observing
+            // observer.disconnect();
+        }
+        main();
+    </script>
+</body>
+
+</html>
