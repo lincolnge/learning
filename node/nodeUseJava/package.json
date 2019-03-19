@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "java": "^0.10.0"
+    "java": "^0.10.0",
+    "node-java-maven": "^0.1.1"
   }
 }
