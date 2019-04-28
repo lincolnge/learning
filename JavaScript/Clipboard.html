@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Clipboard</title>
+    </head>
+
+    <style>
+    div.source, div.target, div#outbox {
+        border: 1px solid gray;
+        margin: .5rem;
+        padding: .5rem;
+        height: 1rem;
+        background-color: #e9eef1;
+    }
+    </style>
+
+    <!-- Learn about this code on MDN: https://developer.mozilla.org/en-US/docs/Web/API/Element/copy_event -->
+
+    <div class="source" contenteditable="true">Try copying text from this box...</div>
+    <button onclick="setClipboard()">copy</button>
+    <div class="target" contenteditable="true">...and pasting it into this one</div>
+    <div id="outbox">...outbox</div>
+
+
+    <script>
+        'use strict';
+
+        const source = document.querySelector('div.source');
+        console.log('source', source);
+
+        source.addEventListener('copy', (event) => {
+            const selection = document.getSelection();
+            event.clipboardData.setData('text/plain', selection.toString().toUpperCase());
+            event.preventDefault();
+        });
+
+        /**
+         * 复制粘贴
+         * https://developer.mozilla.org/en-US/docs/Web/API/Clipboard/writeText
+         */
+        function setClipboard() {
+            const text = document.querySelector('.source').innerHTML;
+            // 复制
+            navigator.clipboard.writeText(text).then(function() {
+                /* success */
+                // 粘贴
+                navigator.clipboard.readText().then((clipText) => {
+                    console.log('clipText', clipText);
+                    document.getElementById("outbox").innerText = clipText;
+                });
+            }, function() {
+                /* failure */
+            });
+        }
+    </script>
+</html>
