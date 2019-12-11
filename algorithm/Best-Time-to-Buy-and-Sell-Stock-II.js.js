@@ -1,0 +1,41 @@
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+// method 1
+var maxProfit = function(prices) {
+    var sum = 0;
+    for (var i = 1; i < prices.length; i++) {
+        if (prices[i] > prices[i - 1]) {
+            sum += prices[i] - prices[i - 1];
+        }
+    }
+    return sum;
+};
+
+// Java 代码
+// class Solution {
+//     public int maxProfit(int[] prices) {
+//         int sum = 0;
+//         for (int i = 1; i < prices.length; i++) {
+//             if (prices[i] > prices[i - 1]) {
+//                 sum += prices[i] - prices[i - 1];
+//             }
+//         }
+//         return sum;
+//     }
+// }
+
+var prices = [];
+prices = [7,1,5,3,6,4];
+console.log('', maxProfit(prices));
+
+prices = [1,2,3,4,5];
+console.log('', maxProfit(prices));
+
+prices = [7,6,4,3,1];
+console.log('', maxProfit(prices));
+
+prices = [1,2,8,8,10];
+console.log('', maxProfit(prices));
+
