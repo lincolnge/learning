@@ -1,0 +1,30 @@
+<div id="app">
+    <h3>{{ title }}</h3>
+</div>
+
+<script src="http://unpkg.com/vue"></script>
+<script>
+    // 1、有个 title，h3 中
+    // 2、2秒后，title 变化
+
+    /**
+     * Approachable
+     * Versatile
+     * Performant
+     * Maintainable
+     * Testable
+     */
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                title: 'abc',
+            };
+        },
+        mounted() {
+            setTimeout(() => {
+                this.title = '新标题';
+            }, 2000);
+        }
+    });
+</script>

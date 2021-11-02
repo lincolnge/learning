@@ -1,0 +1,23 @@
+<div id="app"></div>
+
+<script>
+    // 1、有个 title，h3 中
+    // 2、2秒后，title 变化
+
+    /**
+     * 问题1：接触 dom 操作。
+     * 70% 以上都是 dom 操作。
+     * 工作量大，出问题可能性增加。
+     * 问题2：dom 操作也是业务的一部分。
+     * 希望：数据驱动
+     */
+    let title = 'abc';
+    const h3 = document.createElement('h3');
+    h3.textContent = title;
+    app.appendChild(h3);
+
+    setTimeout(() => {
+        title = '新标题';
+        h3.textContent = title;
+    }, 2000);
+</script>
