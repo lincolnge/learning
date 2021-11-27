@@ -1,0 +1,124 @@
+<div id="app">
+    <div id="nav">
+        <h1>vuex 封装思路</h1>
+        <p>{{ title }}</p>
+        <p @click="$store.commit('add')">count: {{$store.state.count}}</p>
+        <p @click="$store.dispatch('add')">异步 count: {{$store.state.count}}</p>
+        <p>getters: {{$store.getters.getterCount}}</p>
+    </div>
+</div>
+
+<script src="http://unpkg.com/vue"></script>
+<!-- <script src="http://unpkg.com/vuex"></script> -->
+<script>
+    /**
+     * Vuex 的封装思路
+     * https://www.bilibili.com/video/BV1ch411q7G7
+     */
+    class KStoreVuex {
+        constructor(options) {
+            this.options = options;
+            this._mutations = options.mutations;
+            this._actions = options.actions;
+            this._getters = options.getters;
+
+            const computed = {};
+            this.getters = {};
+            Object.keys(this._getters).forEach(getter => {
+                const store = this;
+                const fn = store._getters[getter];
+                computed[getter] = () => {
+                    return fn(store.state);
+                };
+                Object.defineProperty(store.getters, getter, {
+                    get() {
+                        return store.state[getter];
+                    }
+                });
+                console.warn('computed[getter]', computed[getter])
+                // store.getters[getter] = store.state[getter];
+            });
+
+            this.state = new Vue({
+                data: options.state,
+                computed,
+            });
+            this.commit = this.commit.bind(this);
+            this.dispatch = this.dispatch.bind(this);
+        }
+        commit(type, payload) {
+            // console.warn('commit this', this);
+            const fn = this._mutations[type];
+            if (fn) {
+                fn(this.state, payload);
+            }
+        }
+        dispatch(type, payload) {
+            // console.warn('dispatch this', this);
+            const fn = this._actions[type];
+            if (fn) {
+                fn(this, payload);
+            }
+        }
+    }
+    function install(_Vue) {
+        // Vue = _Vue;
+        // 混入
+        _Vue.mixin({
+            beforeCreate() {
+                if (this.$options.store) {
+                    _Vue.prototype.$store = this.$options.store;
+                }
+                console.warn('this beforeCreate', this);
+            }
+        })
+
+    }
+    const Vuex = {
+        Store: KStoreVuex,
+        install,
+    };
+    Vue.use(Vuex);
+    const store = new Vuex.Store({
+        state: {
+            count: 1
+        },
+        getters: {
+            getterCount(state) {
+                return state.count * 3;
+            }
+        },
+        mutations: {
+            add(state) {
+                state.count++
+            }
+        },
+        actions: {
+            add({ commit }) {
+                setTimeout(() => {
+                    commit('add');
+                }, 1000);
+            },
+        },
+        modules: {},
+    });
+
+    new Vue({
+        el: '#app',
+        store,
+        data() {
+            return {
+                title: 'abc',
+            };
+        },
+        methods: {
+        },
+        mounted() {
+            window.this_1 = this;
+            console.warn('mounted', this)
+            setTimeout(() => {
+                this.title = '新标题';
+            }, 2000);
+        }
+    });
+</script>
