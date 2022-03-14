@@ -1,7 +1,7 @@
 README
 ====
 
-安装 
+安装
 
 ```shell
 brew install glfw
