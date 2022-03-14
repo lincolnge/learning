@@ -5,3 +5,6 @@ _site/
 
 .nyc*
 coverage/
+
+# C 编译后文件
+*.out
