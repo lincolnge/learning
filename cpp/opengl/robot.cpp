@@ -1,5 +1,6 @@
 #include "loadBMP.h"
 #include "colorpolygon.h"
+#include <unistd.h>
 
 static int shoulder = -90, elbow = 0, shoulderRight = -90, elbowRight = 0;
 static int shoulder2 = 0, elbow2 = 0, shoulderRight2 = 0, elbowRight2 = 0;
@@ -17,9 +18,9 @@ void init(void)
 {
 	//glClearColor (0.0, 0.0, 0.0, 0.0);
 	//glShadeModel (GL_FLAT);
-		
+
 	glClearColor (0.0, 0.0, 0.0, 0.0);  // The glClearColor function specifies clear values for the color buffers.
-	
+
 	glLoadIdentity();
 	gluLookAt(r*cos(c*du), h, r*sin(c*du), 0, 0, 0, 0, 1, 0); //从视点看远点,y轴方向(0,1,0)是上方向
     glEnable(GL_LIGHTING);  // 会起用深度测试模式
@@ -35,7 +36,7 @@ void init(void)
     glLightfv(GL_LIGHT0,GL_AMBIENT,light0_ambient);
     glLightfv(GL_LIGHT0,GL_DIFFUSE,light0_diffuse);
     glLightfv(GL_LIGHT0,GL_POSITION,light0_position);
-    
+
     LoadAllTextures();          //调入纹理
 }
 
@@ -43,7 +44,7 @@ void display(void)
 {
 	// glClear (GL_COLOR_BUFFER_BIT);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // The glClear function clears buffers to preset values.
-	
+
 	glDisable (GL_LIGHTING); // 光照
 	GLfloat mat_ambient1[]  = {1,0,0,1};
 	GLfloat mat_emission[]  = {1,1,1,0};
@@ -52,7 +53,7 @@ void display(void)
     //GLfloat  no_emission[]  = {0,0,0,1};
 
 	glPushMatrix();
-	
+
 	glPushMatrix();	// 头
 		glTranslatef (0.0, 1.5, 0.0);
 		// 摆正脑袋
@@ -66,7 +67,7 @@ void display(void)
 	//	gltDrawSphere2(1.0, 20, 8);
 		gltDrawSphere2(1.0, 20, 40);         //绘制太阳
 	glPopMatrix();
-	
+
 
 	glPushMatrix();	// 躯体
 		glTranslatef (0.0, -1.0, 0.0);
@@ -77,7 +78,7 @@ void display(void)
 	glPopMatrix();
 	//-----------
 	glPushMatrix();	// 手臂右手 上臂
-		glTranslatef (1.0, 0.5, 0.0); // 
+		glTranslatef (1.0, 0.5, 0.0); //
 		glRotatef ((GLfloat) shoulderRight, 0.0, 0.0, 1.0);		// 右手活动
 
 		glRotatef ((GLfloat) shoulderRight2, 0.0, 1.0, 0.0);		// 右手活动
@@ -192,7 +193,7 @@ void display(void)
 //-------------
 	glPopMatrix();
 	//glutSwapBuffers();
-	
+
 	glFlush();  // 用于强制刷新缓冲，保证绘图命令将被执行，而不是存储在缓冲区[2]中等待其他的OpenGL命令。
     glutSwapBuffers();  // glutSwapBuffers函数是OpenGL中GLUT工具包中用于实现双缓冲技术的一个重要函数。该函数的功能是交换两个缓冲区指针。
 
@@ -202,11 +203,11 @@ void displayT()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
     gluLookAt(r*cos(c*du), h, r*sin(c*du), 0, 0, 0, 0, 1, 0); //从视点看远点,y轴方向(0,1,0)是上方向
-	
-//	gluLookAt (0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);	//指定照相机的位置	
+
+//	gluLookAt (0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);	//指定照相机的位置
 	glScalef ( 0.5,  0.5, 0.5);
 	display();
-	
+
 }
 /*
 void reshape2 (int w, int h)
@@ -226,37 +227,37 @@ void myreshape (int w, int h)
 	glViewport (0, 0, (GLsizei) w, (GLsizei) h);				//指定视口大小
 	glMatrixMode (GL_PROJECTION);
 	glLoadIdentity ();
-		
+
 	gluPerspective(160.0, (GLfloat) w/(GLfloat) h, 1, 20);		//透视投影
-	
+
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-		
-	gluLookAt (0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);	//指定照相机的位置	
+
+	gluLookAt (0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);	//指定照相机的位置
 }
 /*
 void myReshape2(int w, int h)
 {
  glViewport(0, 0, w, h);
 
-// Use a perspective view 
+// Use a perspective view
 
- glMatrixMode(GL_PROJECTION); 
+ glMatrixMode(GL_PROJECTION);
  glLoadIdentity();
-	if(w<=h) glFrustum(-2.0, 2.0, -2.0 * (GLfloat) h/ (GLfloat) w, 
+	if(w<=h) glFrustum(-2.0, 2.0, -2.0 * (GLfloat) h/ (GLfloat) w,
        2.0* (GLfloat) h / (GLfloat) w, 2.0, 20.0);
-	else glFrustum(-2.0, 2.0, -2.0 * (GLfloat) w/ (GLfloat) h, 
+	else glFrustum(-2.0, 2.0, -2.0 * (GLfloat) w/ (GLfloat) h,
        2.0* (GLfloat) w / (GLfloat) h, 2.0, 20.0);
 
-// Or we can use gluPerspective 
+// Or we can use gluPerspective
 
-// gluPerspective(45.0, w/h, -10.0, 10.0); 
+// gluPerspective(45.0, w/h, -10.0, 10.0);
 
  glMatrixMode(GL_MODELVIEW);
 }*/
 /*
 void mymouse(int button,int state,int x,int y)
-{   
+{
     if(state==GLUT_DOWN && button==GLUT_LEFT_BUTTON){   // 鼠标左键被按下
         glRotatef(15.0, 1.0, 0.0, 0.0);
     }
@@ -271,7 +272,7 @@ void mymouse(int button,int state,int x,int y)
 void motion(int x,int y){
 	 rotay=y-positiony-40;
 	 rotax=x-positionx;
-	 displayT();	  
+	 displayT();
 }
 /*
 void reshape(int w, int h)
@@ -330,7 +331,7 @@ void myidle() // jump
 	shoulderRight = 300 - i*30/4;
 	elbowRight = -20 + i * 5;
 
-	Sleep(200);
+	usleep(800);
 	glutPostRedisplay();
 	i += 1;
 }
@@ -342,7 +343,7 @@ void myidle2()
 	legelbow = 0; // 左脚
 	legRight = 0;
 	legelbowRight = 0;
-	Sleep(200);
+	usleep(800);
 	glutPostRedisplay();
 }
 
@@ -364,7 +365,7 @@ void myidle3() // running
 	elbow2 = 20 + i * 10;
 	shoulder2 = 330 + i*30/4;
 
-	Sleep(200);
+	usleep(800);
 	glutPostRedisplay();
 	i += 1;
 }
@@ -392,7 +393,7 @@ void myidle4() // jump and somersault
 	shoulderRight = 300 - i*30/10;
 	elbowRight = -20 + i * 2;
 
-	Sleep(200);
+	usleep(800);
 	glutPostRedisplay();
 	i += 1;
 }
@@ -404,7 +405,7 @@ void keyboard (unsigned char key, int x, int y)
 		case ' ':
 			//i = 0;
 			//glutIdleFunc(myidle);
-			
+
 			if(!first)
 			{
 				glutIdleFunc(myidle);
@@ -416,9 +417,9 @@ void keyboard (unsigned char key, int x, int y)
 				//glutIdleFunc(0);
 				first=!first;
 			}
-			
+
 			break;
-		case 'c':			
+		case 'c':
 			if(!first)
 			{
 				glutIdleFunc(myidle3);
@@ -430,9 +431,9 @@ void keyboard (unsigned char key, int x, int y)
 				//glutIdleFunc(0);
 				first=!first;
 			}
-			
+
 			break;
-		case 'v':			
+		case 'v':
 			if(!first)
 			{
 				glutIdleFunc(myidle4);
@@ -461,7 +462,7 @@ void keyboard (unsigned char key, int x, int y)
 			legelbowRight = 0;
 			glutPostRedisplay();
 			break;
-		case 's':			
+		case 's':
 			if(shoulder>-90)
 				break;
 			shoulder = (shoulder + 5) % 360;	// shoulder一开始是-90
@@ -473,7 +474,7 @@ void keyboard (unsigned char key, int x, int y)
 			shoulder = (shoulder - 5) % 360;
 			glutPostRedisplay();
 			break;
-		case 'd':		
+		case 'd':
 			if(elbow>0)
 				break;
 			elbow = (elbow + 5) % 360;	// elbow一开始是0
@@ -493,7 +494,7 @@ void keyboard (unsigned char key, int x, int y)
 			shoulderRight = (shoulderRight + 5) % 360;
 			glutPostRedisplay();
 			break;
-		case 'f':		
+		case 'f':
 			if(shoulderRight<-90)
 				break;
 			shoulderRight = (shoulderRight - 5) % 360;
@@ -592,12 +593,15 @@ int main(int argc, char** argv)
 {
     glutInit(&argc, argv);  // 所有的GLUT函数都有glut前缀并且那些完成一些初始化的函数有glutInit前缀
     glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);  // 你应该使用函数glutInitDisplayMode()定义显示方式
-    // GLUT_RGBA或者GLUT_RGB。指定一个RGBA窗口，这是一个默认的颜色模式,GLUT_DEPTH.深度缓冲区。 
-    glutInitWindowSize (800, 800);     // 接下来我们设置窗口大小，使用函数glutInitWindowSize（）。 
+
+    // GLUT_RGBA或者GLUT_RGB。指定一个RGBA窗口，这是一个默认的颜色模式,GLUT_DEPTH.深度缓冲区。
+    glutInitWindowSize (800, 800);     // 接下来我们设置窗口大小，使用函数glutInitWindowSize（）。
     glutInitWindowPosition (10, 10);  // 首先确定窗口位置（它默认的是屏幕左上角），我们使用函数glutInitWindowPosition（）
     glutCreateWindow (argv[0]); // 调用函数glutCreateWindow()来创建窗口了
 
     init ();
+
+
 
 	glutDisplayFunc(display); // glutDisplayFunc函数用于注册一个绘图函数， 这样操作系统在必要时刻就会对窗体进行重新绘制操作
     glutIdleFunc(display);
@@ -612,9 +616,30 @@ int main(int argc, char** argv)
 	//glutIdleFunc(myidle);
 	glutMouseFunc(Mouse);
 	glutMotionFunc(onMouseMove);
-	
+
     glutKeyboardFunc(keyboard);   // OpenGL的键盘响应回调函数
 
     glutMainLoop(); // GLUT提供了一个函数让程序进入一个永不结束的循环。一直等待处理下一个事件
+
     return 0;
 }
+
+    // FILE *file = fopen("head.bmp", "rb");
+    // // if(file == NULL)
+    // //     return 0;
+
+    // // fread(&bmpFileHeader, 1, sizeof(BITMAPFILEHEADER), file);         // 读取 BMP 文件头
+    // // fread(bmpInfoHeader, 1, sizeof(BITMAPINFOHEADER), file);           // 读位图信息头
+
+    // BITMAPFILEHEADER head;
+    // BITMAPINFODEADER info;
+
+    // fread(&head, 1, sizeof(BITMAPFILEHEADER), file);
+    // fread(&info, 1, sizeof(BITMAPINFOHEADER), file);           // 读位图信息头
+
+    // std::cout<<"filename:"<<sizeof(BITMAPFILEHEADER)<<std::endl;
+    // showBmpHead(head);
+    // showBmpInforHead(info);
+    // fclose(file);
+
+    // std::cout << "Hello, my robot!\n";

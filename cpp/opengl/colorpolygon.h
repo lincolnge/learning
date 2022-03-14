@@ -6,23 +6,23 @@ the viewer, whose position can be altered by the x,X,y,Y,z, and Z keys.
 The perspective view is set in the reshape callback */
 
 #include <stdlib.h>
-#ifdef __APPLE__
-#include <glut.h>
-#else
-#include <glut.h>
-#endif
-
+// #ifdef __APPLE__
+// #include <glut.h>
+// #else
+// #include <glut.h>
+// #endif
+#include <GLUT/glut.h>
 
 	GLfloat vertices[][3] = {{-1.0,-1.0,-1.0},{1.0,-1.0,-1.0},	// 点的位置
-	{1.0,1.0,-1.0}, {-1.0,1.0,-1.0}, {-1.0,-1.0,1.0}, 
+	{1.0,1.0,-1.0}, {-1.0,1.0,-1.0}, {-1.0,-1.0,1.0},
 	{1.0,-1.0,1.0}, {1.0,1.0,1.0}, {-1.0,1.0,1.0}};
 
 	GLfloat normals[][3] = {{-1.0,-1.0,-1.0},{1.0,-1.0,-1.0},
-	{1.0,1.0,-1.0}, {-1.0,1.0,-1.0}, {-1.0,-1.0,1.0}, 
+	{1.0,1.0,-1.0}, {-1.0,1.0,-1.0}, {-1.0,-1.0,1.0},
 	{1.0,-1.0,1.0}, {1.0,1.0,1.0}, {-1.0,1.0,1.0}};
 
 	GLfloat colors[][3] = {{0.0,0.0,0.0},{1.0,0.0,0.0},
-	{1.0,1.0,0.0}, {0.0,1.0,0.0}, {0.0,0.0,1.0}, 
+	{1.0,1.0,0.0}, {0.0,1.0,0.0}, {0.0,0.0,1.0},
 	{1.0,0.0,1.0}, {1.0,1.0,1.0}, {0.0,1.0,1.0}};
 
 void polygon(int a, int b, int c , int d)
