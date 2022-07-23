@@ -1,16 +1,12 @@
-
 // http://eslint.org/docs/user-guide/configuring eslint-disable
 
 module.exports = {
-    "extends": "eslint-config-airbnb-es5",
-    "rules": {
-        // // 有效v-for指令
-        // "vue/valid-v-for": 0,
-        // // v-for 须指定 key
-        // "vue/require-v-for-key": 0,
-        // "arrow-parens": [0],
-        // "consistent-return": [0],
-        // "no-console": ["error", {"allow": ["warn", "error", "log"]}],
-        // "no-debugger": 1
-    }
+  extends: 'standard',
+  rules: {
+    // 'no-var': 0, // 禁用var，用let和const代替
+    semi: ['error', 'always'], // 代码需要以分号结尾
+    'comma-dangle': ['warn', 'always-multiline'], // 逗号结尾
+    'no-unused-vars': 0, // 禁止未使用过的变量
+    // indent: ['error', 2] // 2 个空格缩进
+  },
 };
