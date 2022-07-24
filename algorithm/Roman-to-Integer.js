@@ -3,50 +3,49 @@
  * @param {string} s
  * @return {number}
  */
-var romanToInt = function(s) {
-    var arr = s;
-    var result = 0;
-    // arr = [ 'I1', 'I2', 'I3' ];
-    // console.log('arr', arr);
+const romanToInt = function (s) {
+  const arr = s;
+  let result = 0;
+  // arr = [ 'I1', 'I2', 'I3' ];
+  // console.log('arr', arr);
 
-    // arr.reduce(function(x, y) {
-    //     // console.log('x, y', x, y)
-    //     if (romanValue[x] >= romanValue[y]) {
-    //         result += (romanValue[x]);
-    //     } else {
-    //         result -= (romanValue[x]);
-    //     }
-    //     return y;
-    // });
+  // arr.reduce(function(x, y) {
+  //     // console.log('x, y', x, y)
+  //     if (romanValue[x] >= romanValue[y]) {
+  //         result += (romanValue[x]);
+  //     } else {
+  //         result -= (romanValue[x]);
+  //     }
+  //     return y;
+  // });
 
-    // for 循环比 reduce 应该要快一些。
-    for(var arrIndex = 1; arrIndex < arr.length; arrIndex++) {
-        // console.log('arr[arrIndex - 1]', arr[arrIndex - 1], arr[arrIndex]);
-        var last = romanValue[arr[arrIndex - 1]];
-        // console.log('...last', last, romanValue[arr[arrIndex]]);
-        if (last >= romanValue[arr[arrIndex]]) {
-            result += last;
-        } else {
-            result -= last;
-        }
+  // for 循环比 reduce 应该要快一些。
+  for (let arrIndex = 1; arrIndex < arr.length; arrIndex++) {
+    // console.log('arr[arrIndex - 1]', arr[arrIndex - 1], arr[arrIndex]);
+    const last = romanValue[arr[arrIndex - 1]];
+    // console.log('...last', last, romanValue[arr[arrIndex]]);
+    if (last >= romanValue[arr[arrIndex]]) {
+      result += last;
+    } else {
+      result -= last;
     }
+  }
 
-    result += romanValue[arr[arr.length - 1]];
-    return result;
+  result += romanValue[arr[arr.length - 1]];
+  return result;
 };
 
-var romanValue = {
-    'I': 1,
-    'V': 5,
-    'X': 10,
-    'L': 50,
-    'C': 100,
-    'D': 500,
-    'M': 1000,
+const romanValue = {
+  I: 1,
+  V: 5,
+  X: 10,
+  L: 50,
+  C: 100,
+  D: 500,
+  M: 1000,
 };
 
 // console.log('romanToInt(\'IV\')', romanToInt('IV'), 4);
-
 
 console.log('romanToInt(\'I\')', romanToInt('I'), 1);
 console.log('romanToInt(\'II\')', romanToInt('II'), 2);

@@ -1,11 +1,11 @@
-async function promiseLimit(tasks, limit) {
-  var ret = [];
-  var executing = [];
-  while(tasks.length > 0) {
-    var fn = tasks.shift();
-    var p = Promise.resolve().then(() => fn());
+async function promiseLimit (tasks, limit) {
+  const ret = [];
+  const executing = [];
+  while (tasks.length > 0) {
+    const fn = tasks.shift();
+    const p = Promise.resolve().then(() => fn());
     ret.push(p);
-    var e = p.then(() => executing.splice(executing.indexOf(e), 1));
+    const e = p.then(() => executing.splice(executing.indexOf(e), 1));
     executing.push(e);
     if (executing.length >= limit) {
       await Promise.race(executing);
@@ -14,7 +14,7 @@ async function promiseLimit(tasks, limit) {
   return Promise.all(ret);
 }
 
-async function concurrentControl(requestPool, poolLimit) {
+async function concurrentControl (requestPool, poolLimit) {
   // 存放所有请求返回的 promise
   const ret = [];
   // 正在执行的请求，用于控制并发
@@ -34,8 +34,8 @@ async function concurrentControl(requestPool, poolLimit) {
   return Promise.all(ret);
 }
 
-const promise1 = () => {console.log(3);return Promise.resolve(3)};
-const promise2 = () => {console.log(42);return 42};
+const promise1 = () => { console.log(3); return Promise.resolve(3); };
+const promise2 = () => { console.log(42); return 42; };
 const promise3 = () => new Promise((resolve, reject) => {
   setTimeout(() => {
     console.log('0 foo');
@@ -45,8 +45,7 @@ const promise3 = () => new Promise((resolve, reject) => {
 const promise4 = () => {
   console.log('promise4');
   return 'promise 4 fn';
-}
-
+};
 
 // Promise.all([promise1, promise2, promise3, promise4]).then((values) => {
 //   // if (typeof values === 'function') {

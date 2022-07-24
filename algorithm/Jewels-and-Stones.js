@@ -23,20 +23,20 @@
 //     return stones;
 // };
 // method 2
-var numJewelsInStones = function(J, S) {
-    let jArr = J.split('');
-    let sArr = S.split('');
-    return sArr.filter(item => jArr.includes(item)).length;
+const numJewelsInStones = function (J, S) {
+  const jArr = J.split('');
+  const sArr = S.split('');
+  return sArr.filter(item => jArr.includes(item)).length;
 };
 
-var J;
-var S;
-J = "aA";
-S = "aAAbbbb";
+let J;
+let S;
+J = 'aA';
+S = 'aAAbbbb';
 console.log('numJewelsInStones(J, S)', numJewelsInStones(J, S));
 
-J = "z";
-S = "ZZ";
+J = 'z';
+S = 'ZZ';
 console.log('numJewelsInStones(J, S)', numJewelsInStones(J, S));
 
 // TODO: 没做完。。。

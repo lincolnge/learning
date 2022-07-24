@@ -1,9 +1,9 @@
-function tco(f) {
-  var value;
-  var active = false;
-  var accumulated = [];
+function tco (f) {
+  let value;
+  let active = false;
+  const accumulated = [];
 
-  return function accumulator() {
+  return function accumulator () {
     accumulated.push(arguments);
     if (!active) {
       active = true;
@@ -16,13 +16,12 @@ function tco(f) {
   };
 }
 
-var sum = tco(function(x, y) {
+const sum = tco(function (x, y) {
   if (y > 0) {
-    return sum(x + 1, y - 1)
-  }
-  else {
-    return x
+    return sum(x + 1, y - 1);
+  } else {
+    return x;
   }
 });
 
-sum(1, 100000)
+sum(1, 100000);

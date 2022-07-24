@@ -3,17 +3,17 @@
  * @return {number}
  * https://leetcode.com/problems/string-to-integer-atoi/
  */
-var myAtoi = function(str) {
-    var result = parseInt(str, 10);
-    if (isNaN(result)) {
-        return 0;
-    }
-    if (result >= Math.pow(2, 31)) {
-        return Math.pow(2, 31) - 1;
-    } else if (result < -Math.pow(2, 31)) {
-        return -Math.pow(2, 31);
-    }
-    return result;
+const myAtoi = function (str) {
+  const result = parseInt(str, 10);
+  if (isNaN(result)) {
+    return 0;
+  }
+  if (result >= Math.pow(2, 31)) {
+    return Math.pow(2, 31) - 1;
+  } else if (result < -Math.pow(2, 31)) {
+    return -Math.pow(2, 31);
+  }
+  return result;
 };
 
 console.log(myAtoi('42'), 42);

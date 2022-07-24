@@ -1,144 +1,145 @@
+/* eslint-disable */
 /**
  * https://leetcode.com/problems/integer-to-roman/
  * @param {number} num
  * @return {string}
  */
-var intToRoman = function(num) {
-    if (num >= 4000) {
-        new Error('无法处理');
-        return null;
+var intToRoman = function (num) {
+  if (num >= 4000) {
+    new Error('无法处理');
+    return null;
+  }
+
+  let result = '';
+  let count = 0;
+  let currentIndex = currentRomanValue.length - 1;
+  let currentSymbol = null;
+  let lastSymbol = null;
+  // var nextSymbol = '';
+  let minuend;
+
+  while (num) {
+    currentSymbol = currentRomanValue[currentIndex];
+    if (currentIndex + 1 < currentRomanValue.length) {
+      lastSymbol = currentRomanValue[currentIndex + 1];
+    } else {
+      // 处理 lastSymbol 为 1000 的时候
+      lastSymbol = currentSymbol;
     }
 
-    var result = '';
-    var count = 0;
-    var currentIndex = currentRomanValue.length - 1;
-    var currentSymbol = null;
-    var lastSymbol = null;
-    // var nextSymbol = '';
-    var minuend;
-
-    while(num) {
-        currentSymbol = currentRomanValue[currentIndex];
-        if (currentIndex + 1 < currentRomanValue.length) {
-            lastSymbol = currentRomanValue[currentIndex + 1];
-        } else {
-            // 处理 lastSymbol 为 1000 的时候
-            lastSymbol = currentSymbol;
-        }
-
-        if (currentIndex >= 2) {
-            minuend = currentRomanValue[currentIndex - 1];
-            if (!minuend.isMinuend) {
-                minuend = currentRomanValue[currentIndex - 2];
-            }
-        }
-        if (currentSymbol.value === minuend.value) {
-            // 当前的不能为被减数
-            lastSymbol = null;
-        }
-        count = Math.floor(num / currentSymbol.value);
-        num = num % currentSymbol.value;
-
-        // console.log(
-        //     'count', count, 'num', num,
-        //     'lastSymbol', lastSymbol && lastSymbol.value,
-        //     'currentSymbol', currentSymbol.symbol,
-        //     'minuend', minuend.value,
-        // );
-
-        if (count >= 1) {
-            result += repeat(count, currentSymbol.symbol);
-        }
-        if (lastSymbol && (currentSymbol.value - minuend.value <= num)) {
-            result += minuend.symbol + currentSymbol.symbol;
-            num = num - (currentSymbol.value - minuend.value);
-        }
-
-        if (num < 0) {
-            break;
-        }
-        currentIndex--;
+    if (currentIndex >= 2) {
+      minuend = currentRomanValue[currentIndex - 1];
+      if (!minuend.isMinuend) {
+        minuend = currentRomanValue[currentIndex - 2];
+      }
     }
-    return result;
+    if (currentSymbol.value === minuend.value) {
+      // 当前的不能为被减数
+      lastSymbol = null;
+    }
+    count = Math.floor(num / currentSymbol.value);
+    num = num % currentSymbol.value;
+
+    // console.log(
+    //     'count', count, 'num', num,
+    //     'lastSymbol', lastSymbol && lastSymbol.value,
+    //     'currentSymbol', currentSymbol.symbol,
+    //     'minuend', minuend.value,
+    // );
+
+    if (count >= 1) {
+      result += repeat(count, currentSymbol.symbol);
+    }
+    if (lastSymbol && (currentSymbol.value - minuend.value <= num)) {
+      result += minuend.symbol + currentSymbol.symbol;
+      num = num - (currentSymbol.value - minuend.value);
+    }
+
+    if (num < 0) {
+      break;
+    }
+    currentIndex--;
+  }
+  return result;
 };
 
-var repeat = function( num, str ) {
-    return new Array(num + 1).join(str);
+var repeat = function (num, str) {
+  return new Array(num + 1).join(str);
 };
 
 var currentRomanValue = [
-    { symbol: 'I', value: 1, isMinuend: true },
-    { symbol: 'V', value: 5, isMinuend: false },
-    { symbol: 'X', value: 10, isMinuend: true },
-    { symbol: 'L', value: 50, isMinuend: false },
-    { symbol: 'C', value: 100, isMinuend: true },
-    { symbol: 'D', value: 500, isMinuend: false },
-    { symbol: 'M', value: 1000, isMinuend: true },
+  { symbol: 'I', value: 1, isMinuend: true },
+  { symbol: 'V', value: 5, isMinuend: false },
+  { symbol: 'X', value: 10, isMinuend: true },
+  { symbol: 'L', value: 50, isMinuend: false },
+  { symbol: 'C', value: 100, isMinuend: true },
+  { symbol: 'D', value: 500, isMinuend: false },
+  { symbol: 'M', value: 1000, isMinuend: true },
 ];
 
 // 方法二
-var intToRoman = function(num) {
-    var M = ['', 'M', 'MM', 'MMM'];
-    var C = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM'];
-    var X = ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'];
-    var I = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'];
-    return M[Math.floor(num/1000)] + C[Math.floor((num%1000)/100)] + X[Math.floor((num%100)/10)] + I[num%10];
+var intToRoman = function (num) {
+  const M = ['', 'M', 'MM', 'MMM'];
+  const C = ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM'];
+  const X = ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'];
+  const I = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'];
+  return M[Math.floor(num / 1000)] + C[Math.floor((num % 1000) / 100)] + X[Math.floor((num % 100) / 10)] + I[num % 10];
 };
 
 // 方法三
-var intToRoman = function(num) {
-	if (num >= 1000) {
-		return "M" + intToRoman(num - 1000)
-	}
+var intToRoman = function (num) {
+  if (num >= 1000) {
+    return 'M' + intToRoman(num - 1000);
+  }
 
-	if (num >= 900) {
-		return "CM" + intToRoman(num - 900)
-	}
+  if (num >= 900) {
+    return 'CM' + intToRoman(num - 900);
+  }
 
-	if (num >= 500) {
-		return "D" + intToRoman(num - 500)
-	}
+  if (num >= 500) {
+    return 'D' + intToRoman(num - 500);
+  }
 
-	if (num >= 400) {
-		return "CD" + intToRoman(num - 400)
-	}
+  if (num >= 400) {
+    return 'CD' + intToRoman(num - 400);
+  }
 
-	if (num >= 100) {
-		return "C" + intToRoman(num - 100)
-	}
+  if (num >= 100) {
+    return 'C' + intToRoman(num - 100);
+  }
 
-	if (num >= 90) {
-		return "XC" + intToRoman(num - 90)
-	}
+  if (num >= 90) {
+    return 'XC' + intToRoman(num - 90);
+  }
 
-	if (num >= 50) {
-		return "L" + intToRoman(num - 50)
-	}
+  if (num >= 50) {
+    return 'L' + intToRoman(num - 50);
+  }
 
-	if (num >= 40) {
-		return "XL" + intToRoman(num - 40)
-	}
+  if (num >= 40) {
+    return 'XL' + intToRoman(num - 40);
+  }
 
-	if (num >= 10) {
-		return "X" + intToRoman(num - 10)
-	}
+  if (num >= 10) {
+    return 'X' + intToRoman(num - 10);
+  }
 
-	if (num >= 9) {
-		return "IX" + intToRoman(num - 9)
-	}
+  if (num >= 9) {
+    return 'IX' + intToRoman(num - 9);
+  }
 
-	if (num >= 5) {
-		return "V" + intToRoman(num - 5)
-	}
+  if (num >= 5) {
+    return 'V' + intToRoman(num - 5);
+  }
 
-	if (num >= 4) {
-		return "IV" + intToRoman(num - 4)
-	}
+  if (num >= 4) {
+    return 'IV' + intToRoman(num - 4);
+  }
 
-	if (num >= 1) {
-		return "I" + intToRoman(num - 1)
-	}
-	return '';
+  if (num >= 1) {
+    return 'I' + intToRoman(num - 1);
+  }
+  return '';
 };
 
 // Symbol       Value

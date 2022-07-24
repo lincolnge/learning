@@ -8,7 +8,6 @@
 //   return arr.join('[.]');
 // };
 
-
-var defangIPaddr = function(address) {
+const defangIPaddr = function (address) {
   return address.replaceAll('.', '[.]');
 };

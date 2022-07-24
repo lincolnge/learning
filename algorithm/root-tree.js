@@ -16,13 +16,13 @@
 
  */
 
-function TreeNode(val) {
+function TreeNode (val) {
   this.val = val;
   this.left = null;
   this.right = null;
 }
 
-var rootTree = new TreeNode(2);
+const rootTree = new TreeNode(2);
 rootTree.left = new TreeNode(1);
 rootTree.left.left = new TreeNode(0);
 rootTree.left.right = new TreeNode(7);

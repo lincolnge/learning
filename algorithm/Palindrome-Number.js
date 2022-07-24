@@ -3,24 +3,21 @@
  * @param {number} x
  * @return {boolean}
  */
-var isPalindrome = function(x) {
-    if (x < 0) {
-        return false;
+const isPalindrome = function (x) {
+  if (x < 0) {
+    return false;
+  }
+  const array = String(x).split('');
+  const length = array.length;
+  let left = null;
+  let right = null;
+  for (left = 0, right = length - 1; left < right; left += 1, right -= 1) {
+    if (array[left] !== array[right]) {
+      return false;
     }
-    var array = String(x).split('');
-    var length = array.length;
-    var left = null;
-    var right = null;
-    for (left = 0, right = length - 1; left < right; left += 1, right -= 1) {
-        if (array[left] !== array[right]) {
-            return false;
-        }
-    }
-    return true;
+  }
+  return true;
 };
-
-
-
 
 // var isPalindrome = function(x) {
 //     if (x % 10 === 0 && x !== 0) return false;

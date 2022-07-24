@@ -9,7 +9,7 @@
 //   return n * factorial(n - 1);
 // }
 
-function factorial(n, total) {
+function factorial (n, total) {
   if (n === 1) return total;
   return factorial(n - 1, n * total);
 }
@@ -27,11 +27,11 @@ function factorial(n, total) {
 //   return Fibonacci(n - 1, x1, x0 + x1);
 // }
 
-function Fibonacci(n) {
-  var list = new Array();
+function Fibonacci (n) {
+  const list = [];
   list[0] = 1;
   list[1] = 1;
-  for (var i = 1; i < n; i++) {
+  for (let i = 1; i < n; i++) {
     list[i + 1] = list[i] + list[i - 1];
   }
   return list[n];

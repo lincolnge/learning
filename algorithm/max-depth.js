@@ -36,16 +36,16 @@
 // }
 
 // 非递归写法
-var maxDepth = function(root) {
+const maxDepth = function (root) {
   if (root === null) {
     return 0;
   }
-  var node = root;
-  var stack = [];
-  var depthStack = [];
+  let node = root;
+  const stack = [];
+  const depthStack = [];
 
-  var maxDth = 0;
-  var depth = 1;
+  let maxDth = 0;
+  let depth = 1;
 
   stack.push(node);
   depthStack.push(depth);
@@ -66,18 +66,18 @@ var maxDepth = function(root) {
     }
   }
   return maxDth;
-}
+};
 
 /**
  * 广度优先算法（Breadth First Search）
  * 先进先出
  */
 
-function BFS(node) {
-  var que = [];
+function BFS (node) {
+  const que = [];
   que.push(node);
   while (que.length !== 0) {
-    node = que.shift()
+    node = que.shift();
     console.log(node.val, que);
     if (node.left) que.push(node.left);
     if (node.right) que.push(node.right);
@@ -89,8 +89,8 @@ function BFS(node) {
  * 后进先出
  */
 
-function DFS(node) {
-  var stack = [];
+function DFS (node) {
+  const stack = [];
   stack.push(node);
   while (stack.length !== 0) {
     node = stack.pop();
@@ -126,13 +126,13 @@ if (node) {
 
  */
 
-function TreeNode(val) {
+function TreeNode (val) {
   this.val = val;
   this.left = null;
   this.right = null;
 }
 
-var rootTree = new TreeNode(2);
+const rootTree = new TreeNode(2);
 rootTree.left = new TreeNode(1);
 rootTree.left.left = new TreeNode(0);
 rootTree.left.right = new TreeNode(7);
@@ -179,6 +179,5 @@ rootTree.right.right.right = new TreeNode(8);
 //     right: null,
 //   }
 // }
-
 
 console.log('maxDepth(rootTree)', maxDepth(rootTree));

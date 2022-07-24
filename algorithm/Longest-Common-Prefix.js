@@ -2,27 +2,27 @@
  * @param {string[]} strs
  * @return {string}
  */
-var longestCommonPrefix = function(strs) {
-    var prefix = strs[0];
+const longestCommonPrefix = function (strs) {
+  let prefix = strs[0];
 
-    var strIndex = 0;
-    var res;
-    while(strIndex < strs.length) {
-        res = strs[strIndex].match('^' + prefix);
-        if (!res) {
-            prefix = prefix.slice(0, -1);
-        } else {
-            strIndex++;
-        }
+  let strIndex = 0;
+  let res;
+  while (strIndex < strs.length) {
+    res = strs[strIndex].match('^' + prefix);
+    if (!res) {
+      prefix = prefix.slice(0, -1);
+    } else {
+      strIndex++;
     }
-    return (res && res[0]) || '';
+  }
+  return (res && res[0]) || '';
 };
 
-var arr = ["flower","flow","flight"];
+let arr = ['flower', 'flow', 'flight'];
 console.log(arr, longestCommonPrefix(arr), 'fl');
-arr = ["dog","racecar","car"];
+arr = ['dog', 'racecar', 'car'];
 console.log(arr, longestCommonPrefix(arr), '');
-arr = ["flower","flow","flight"];
+arr = ['flower', 'flow', 'flight'];
 console.log(arr, longestCommonPrefix(arr), 'fl');
-arr = ["flower"];
+arr = ['flower'];
 console.log(arr, longestCommonPrefix(arr), 'flower');

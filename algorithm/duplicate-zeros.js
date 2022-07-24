@@ -15,19 +15,19 @@
 //   return arr;
 // };
 
-var duplicateZeros = function (arr) {
-  var count0 = 0;
-  var len = arr.length;
-  for (var i = 0; i < arr.length; i++) {
-      if (arr[i] === 0) count0++;
+const duplicateZeros = function (arr) {
+  let count0 = 0;
+  const len = arr.length;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === 0) count0++;
   }
-  for (var j = arr.length - 1; j >= 0; j--) {
-      if (count0 === 0) break;
-      if (arr[j] === 0) {
-          arr[j + count0] = 0;
-          count0--;
-      }
-      arr[j + count0] = arr[j];
+  for (let j = arr.length - 1; j >= 0; j--) {
+    if (count0 === 0) break;
+    if (arr[j] === 0) {
+      arr[j + count0] = 0;
+      count0--;
+    }
+    arr[j + count0] = arr[j];
   }
   arr.length = len;
 };

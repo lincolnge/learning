@@ -1,4 +1,4 @@
-function ListNode(val) {
+function ListNode (val) {
   this.val = val;
   this.left = null;
   this.right = null;
@@ -24,7 +24,7 @@ function ListNode(val) {
  * 在这颗树上就是 2 - 3 - 6 这支
  */
 
-var l0 = new ListNode(2);
+const l0 = new ListNode(2);
 l0.left = new ListNode(1);
 l0.left.left = new ListNode(3);
 l0.left.right = new ListNode(7);
@@ -38,16 +38,16 @@ l0.right.right = new ListNode(1);
 l0.right.right.left = new ListNode(8);
 l0.right.right.right = new ListNode(8);
 
-var sumStack = [];
-var sumStackList = {};
-var treeNode = {};
+const sumStack = [];
+const sumStackList = {};
+const treeNode = {};
 
-var searchMinValueNode = function(root) {
-  var dep = 0;
-  var sum = 0;
+const searchMinValueNode = function (root) {
+  const dep = 0;
+  const sum = 0;
 
   // console.log('root', root && root.val);
-  var result = minDeep(root, sum, dep);
+  const result = minDeep(root, sum, dep);
   console.log('dep', treeNode[result]);
   // console.log('end sumStack', sumStack);
   console.log('tree-leave', sumStackList[result]);
@@ -55,7 +55,7 @@ var searchMinValueNode = function(root) {
   return result;
 };
 
-var minDeep = function(root, sum, dep) {
+const minDeep = function (root, sum, dep) {
   if (root === null) {
     return Infinity;
   }
@@ -74,7 +74,7 @@ var minDeep = function(root, sum, dep) {
     return sum;
   }
   return Math.min(minDeep(root.left, sum, dep), minDeep(root.right, sum, dep));
-}
+};
 
 console.log('begin!');
 searchMinValueNode(l0);
