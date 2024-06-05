@@ -19,11 +19,14 @@
     width: var(--width);
     /* 这个是菜单宽度 */
   }
-  .footer {
+  .container {
     display: flex;
     position: relative;
     margin-left: calc(var(--width) / 2);
     /* 取一半 */
+  }
+  .footer {
+    /* 继承父节点的样式 */
   }
   .middle {
     position: fixed;
@@ -40,11 +43,14 @@
 </style>
 <div class="menu">
 
-</div><div class="footer">
-  <div class="middle">
-    <span>垂直居中吸底</span>
-    <br />
-    1 2hhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhh2 1
-    <div>1 2hhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhh2 1</div>
+</div>
+<div class="container">
+  <div class="footer">
+    <div class="middle">
+      <span>垂直居中吸底</span>
+      <br />
+      1 2hhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhh2 1
+      <div>1 2hhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhh2 1</div>
+    </div>
   </div>
 </div>
