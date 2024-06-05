@@ -1,0 +1,50 @@
+<style>
+  :root {
+    /* 可通过改这个值控制 menu 宽度 */
+    --width: 100px;
+  }
+  * {
+    margin: 0;
+    /* 都设置 0，省得麻烦 */
+  }
+  body {
+    display: flex;
+    flex-direction: column;
+    /* height: 100vh; */
+  }
+  .menu {
+    display: flex;
+    background: blue;
+    height: 100%;
+    width: var(--width);
+    /* 这个是菜单宽度 */
+  }
+  .footer {
+    display: flex;
+    position: relative;
+    margin-left: calc(var(--width) / 2);
+    /* 取一半 */
+  }
+  .middle {
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    margin: auto;
+    width: 100%;
+  }
+  .middle > div {
+    /* 这一层可有可无 */
+    text-align: center;
+    margin: auto;
+  }
+</style>
+<div class="menu">
+
+</div><div class="footer">
+  <div class="middle">
+    <span>垂直居中吸底</span>
+    <br />
+    1 2hhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhh2 1
+    <div>1 2hhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhhh hhh2 1</div>
+  </div>
+</div>
